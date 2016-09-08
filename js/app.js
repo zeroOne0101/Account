@@ -63,8 +63,9 @@ angular.module('ionicApp', ['ionic'])
 
 })
 
-.controller('HomeTabCtrl', function ($scope, $ionicModal) {
+.controller('HomeTabCtrl', function ($scope, $ionicModal,$http) {
     console.log('HomeTabCtrl');
+    $scope.getData();
     $ionicModal.fromTemplateUrl('templates/mylongform.html', {
         scope: $scope,
         animation: 'slide-in-up'
@@ -76,5 +77,9 @@ angular.module('ionicApp', ['ionic'])
     }
     $scope.closeModal = function () {
         $scope.modal.hide();
+    }
+    $scope.getData=function(){
+        $scope.data1=$http.get("http://a23.wang/ashx/getAccountData.ashx");
+        alert(data1);
     }
 });
