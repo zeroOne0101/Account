@@ -1,4 +1,4 @@
-angular.module('ionicApp', ['ionic'])
+angular.module('ionicApp', ['ionic','zy.controllers', 'zy.services'])
 
 .config(function ($stateProvider, $urlRouterProvider) {
 
@@ -37,7 +37,8 @@ angular.module('ionicApp', ['ionic'])
           url: "/about",
           views: {
               'about-tab': {
-                  templateUrl: "templates/about.html"
+                  templateUrl: "templates/about.html",
+                  controller: 'AboutTabCtrl'
               }
           }
       })
@@ -61,25 +62,6 @@ angular.module('ionicApp', ['ionic'])
 
     $urlRouterProvider.otherwise("/tab/home");
 
-})
-
-.controller('HomeTabCtrl', function ($scope, $ionicModal,$http) {
-    console.log('HomeTabCtrl');
-    $scope.getData();
-    $ionicModal.fromTemplateUrl('templates/mylongform.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function (modal) {
-        $scope.modal = modal;
-    });
-    $scope.openModal = function () {
-        $scope.modal.show();
-    }
-    $scope.closeModal = function () {
-        $scope.modal.hide();
-    }
-    $scope.getData=function(){
-        $scope.data1=$http.get("http://a23.wang/ashx/getAccountData.ashx");
-        alert(data1);
-    }
 });
+
+
